@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
   skip_before_action :authorize, only: :create
 
-  def index
-  end
-
-  def new
+  def all_users
+    @users = User.where.not(id: current_user.id)
+    render json: @users.as_json(only: [:id, :email])
   end
 
   def create
