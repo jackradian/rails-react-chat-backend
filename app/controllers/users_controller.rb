@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def all_users
     @users = User.where.not(id: current_user.id)
-    render json: @users.as_json(only: [:id, :email])
+    render json: @users.as_json(only: [:id, :nickname])
   end
 
   def create
@@ -19,6 +19,12 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.permit(:email, :password)
+    params.permit(
+      :email,
+      :password,
+      :nickname,
+      :first_name,
+      :last_name
+    )
   end
 end
