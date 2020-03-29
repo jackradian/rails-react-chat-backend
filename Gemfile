@@ -17,6 +17,8 @@ gem 'redis', '~> 4.1', '>= 4.1.3'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'sidekiq', '~> 6.0', '>= 6.0.6'
+
 gem 'dotenv', '~> 2.7', '>= 2.7.5', groups: [:development, :test]
 
 # Use Active Storage variant
