@@ -11,6 +11,8 @@ gem 'mysql2', '>= 0.4.4'
 gem 'puma', '~> 4.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+# Autoload dotenv in Rails
+gem 'dotenv-rails', '~> 2.7', '>= 2.7.5', groups: [:development, :test]
 # Use Redis adapter to run Action Cable in production
 gem 'hiredis', '~> 0.6.3'
 gem 'redis', '~> 4.1', '>= 4.1.3'
@@ -18,8 +20,6 @@ gem 'redis', '~> 4.1', '>= 4.1.3'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'sidekiq', '~> 6.0', '>= 6.0.6'
-
-gem 'dotenv', '~> 2.7', '>= 2.7.5', groups: [:development, :test]
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
