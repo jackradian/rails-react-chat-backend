@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :authorize, only: :create
 
-  def all_users
-    @users = User.where.not(id: current_user.id)
+  def get_friends
+    @users = current_user.friends
     render json: @users.as_json(only: [:id, :nickname])
   end
 

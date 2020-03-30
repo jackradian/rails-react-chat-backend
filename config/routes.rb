@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create", as: "login"
   get "logout", to: "sessions#destroy", as: "logout"
 
-  get "all_users", to: "users#all_users", as: "all_users"
+  get "get_friends", to: "users#get_friends", as: "get_friends"
 end
