@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -16,7 +17,7 @@ first_user = User.create(
   last_name: "Nguyen"
 )
 
-(1..10).each do
+10.times do
   User.create(
     email: Faker::Internet.email,
     password: "123456",

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Room < ApplicationRecord
   has_many :participants, dependent: :destroy
   has_many :users, through: :participants

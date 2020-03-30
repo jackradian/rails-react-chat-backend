@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ApplicationController < ActionController::API
   before_action :authorize
   helper_method :current_user
@@ -11,6 +12,6 @@ class ApplicationController < ActionController::API
   end
 
   def authorize
-    render json: { err: 1, msg: "Invalid" }, status: 401 if current_user.nil?
+    render(json: { err: 1, msg: "Invalid" }, status: 401) if current_user.nil?
   end
 end
