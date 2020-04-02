@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get "logout", to: "sessions#destroy", as: "logout"
 
   get "get_friends", to: "users#all_friends", as: "get_friends"
+  get "my_direct_rooms", to: "rooms#my_direct_rooms", as: "my_direct_rooms"
 end

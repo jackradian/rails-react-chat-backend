@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 class RoomChannel < ApplicationCable::Channel
   def subscribed
-    @room = Room.includes(:users, :messages).find_by(id: params[:room])
-    stream_for(@room)
+    @room = Room.find_by_id(params[:room_id])
+    stream_for(@room) if @room
   end
 
   def receive(data)
