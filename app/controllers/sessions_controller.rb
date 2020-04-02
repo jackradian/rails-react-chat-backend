@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
         msg: "Login Success",
         id: user.id,
         email: user.email,
+        nickname: user.nickname
       })
     else
       render(json: { err: 1, msg: "Invalid Email or Password" })

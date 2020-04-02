@@ -16,6 +16,7 @@ class UsersController < ApplicationController
         msg: "Sign up success",
         id: @user.id,
         email: @user.email,
+        nickname: @user.nickname
       })
     else
       render(json: { err: 1, err_arr: @user.errors.full_messages })
