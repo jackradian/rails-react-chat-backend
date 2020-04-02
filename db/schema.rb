@@ -27,8 +27,10 @@ ActiveRecord::Schema.define(version: 2020_03_27_140648) do
   create_table "participants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "room_id", null: false
     t.bigint "user_id", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id", "user_id"], name: "index_participants_on_room_id_and_user_id"
     t.index ["room_id"], name: "index_participants_on_room_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
@@ -37,17 +39,6 @@ ActiveRecord::Schema.define(version: 2020_03_27_140648) do
     t.integer "room_type", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_one_id", null: false
-    t.bigint "user_two_id", null: false
-    t.integer "relationship_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_one_id", "user_two_id"], name: "index_user_relationships_on_user_one_id_and_user_two_id", unique: true
-    t.index ["user_one_id"], name: "index_user_relationships_on_user_one_id"
-    t.index ["user_two_id"], name: "index_user_relationships_on_user_two_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -66,6 +57,4 @@ ActiveRecord::Schema.define(version: 2020_03_27_140648) do
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "participants", "rooms"
   add_foreign_key "participants", "users"
-  add_foreign_key "user_relationships", "users", column: "user_one_id"
-  add_foreign_key "user_relationships", "users", column: "user_two_id"
 end
