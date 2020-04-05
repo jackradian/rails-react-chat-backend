@@ -12,6 +12,6 @@ class ApplicationController < ActionController::API
   end
 
   def authorize
-    render(json: { err: 1, msg: "Invalid" }, status: 401) if current_user.nil?
+    render(json: { err: 1, msg: "Unauthorized" }, status: 401) if current_user.nil?
   end
 end
