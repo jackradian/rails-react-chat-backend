@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_140648) do
+ActiveRecord::Schema.define(version: 2020_04_05_085136) do
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "room_id", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_140648) do
     t.bigint "room_id", null: false
     t.bigint "user_id", null: false
     t.integer "status", default: 0, null: false
+    t.boolean "is_active", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id", "user_id"], name: "index_participants_on_room_id_and_user_id"

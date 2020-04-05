@@ -1,6 +1,12 @@
 json.err 0
 json.rooms @rooms do |room|
   json.id room.id
+  room.participants.each do |p|
+    if p.user_id == current_user.id
+      json.is_active p.is_active
+      break
+    end
+  end
   room.users.each do |u|
     next if u.id == current_user.id
     json.user_nickname u.nickname
