@@ -36,6 +36,16 @@ class RoomChannel < ApplicationCable::Channel
     end
   end
 
+  def set_active_room
+    current_user.participants.each do |p|
+      if p.room_id == @room.id
+        p.update(is_active: true)
+      else
+        p.update(is_active: false)
+      end
+    end
+  end
+
   def unsubscribed; end
 
   private
