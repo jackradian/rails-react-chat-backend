@@ -36,5 +36,8 @@ module Rails6ChatApi
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CacheStore
+
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :utc
   end
 end
