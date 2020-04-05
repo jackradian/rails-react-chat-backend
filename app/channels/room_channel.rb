@@ -16,6 +16,26 @@ class RoomChannel < ApplicationCable::Channel
       { room: @room, users: @room.users, messages: data["message"] })
   end
 
+  def send_message(msg)
+    if msg["sent_at"] && msg["content"]
+      sent_at = Time.at(msg["sent_at"] / 1000.0)
+      SaveMessageWorker.perform_async({
+        room_id: @room.id,
+        sender_id: current_user.id,
+        sent_at: sent_at,
+        content: msg["content"]
+      })
+      RoomChannel.broadcast_to(
+        @room,
+        {
+          sender_nickname: current_user.nickname,
+          sent_at: sent_at.strftime("%Y/%m/%d %H:%M"),
+          content: msg["content"]
+        }
+      )
+    end
+  end
+
   def unsubscribed; end
 
   private
