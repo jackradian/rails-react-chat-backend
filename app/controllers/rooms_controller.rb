@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RoomsController < ApplicationController
   def my_direct_rooms
     @rooms = Room.includes({ participants: :user }, :users, messages: :sender).where(

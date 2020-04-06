@@ -4,6 +4,6 @@ class Message < ApplicationRecord
   belongs_to :sender, class_name: "User"
 
   def sender_nickname
-    sender.nickname if sender
+    sender&.nickname
   end
 end
