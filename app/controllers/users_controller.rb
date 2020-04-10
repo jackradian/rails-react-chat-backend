@@ -23,6 +23,44 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_friend
+    if params[:keyword].present?
+      friend = User.find_by_sql(["
+        SELECT * FROM users WHERE email = ?
+        UNION
+        SELECT * FROM users WHERE nickname = ?
+      ", params[:keyword], params[:keyword]])
+      if !friend.empty?
+        friend = friend[0]
+        existed_direct_room = Room.direct_room_by_id(current_user.id, friend.id)
+        unless existed_direct_room.empty?
+          render(json: { err: 1, msg: "This user has already been added" })
+          return
+        end
+        room = Room.create(room_type: :direct_room)
+        if room
+          room.participants.create([
+            { user: current_user, status: :accepted },
+            { user: friend, status: :invite_pending }
+          ])
+          render(json: {
+            err: 0,
+            room: {
+              id: room.id,
+              is_active: 0,
+              user_nickname: friend.nickname,
+              messages: []
+            }
+          })
+        else
+          render(json: { err: 1, msg: "System error" })
+        end
+      else
+        render(json: { err: 1, msg: "Email or Nickname doesn't exist" })
+      end
+    end
+  end
+
   private
 
   def user_params
