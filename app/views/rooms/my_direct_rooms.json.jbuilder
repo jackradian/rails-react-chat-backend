@@ -4,7 +4,7 @@ json.rooms(@rooms) do |room|
   json.id(room.id)
   room.participants.each do |p|
     if p.user_id == current_user.id
-      json.is_active(p.is_active)
+      json.is_current(p.is_current)
       break
     end
   end

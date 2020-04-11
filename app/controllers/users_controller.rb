@@ -47,7 +47,7 @@ class UsersController < ApplicationController
             err: 0,
             room: {
               id: room.id,
-              is_active: 0,
+              is_current: 0,
               user_nickname: friend.nickname,
               messages: []
             }

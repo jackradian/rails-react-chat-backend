@@ -39,9 +39,9 @@ class RoomChannel < ApplicationCable::Channel
   def set_active_room
     current_user.participants.each do |p|
       if p.room_id == @room.id
-        p.update(is_active: true)
+        p.update(is_current: true)
       else
-        p.update(is_active: false)
+        p.update(is_current: false)
       end
     end
   end
