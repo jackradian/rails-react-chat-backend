@@ -44,6 +44,14 @@ group :development do
   gem 'faker', '~> 2.11'
 
   gem 'rubocop', '~> 0.80.1', require: false
+
+  gem "capistrano", "~> 3.13", require: false
+  gem "capistrano-rails", "~> 1.4", require: false
+  gem 'capistrano-rbenv', '~> 2.1', require: false
+  gem 'capistrano-bundler', '~> 1.6', require: false
+  gem 'capistrano-sidekiq', '~> 1.0', require: false
+  gem 'capistrano3-puma', '~> 4.0', require: false
+  gem 'capistrano3-nginx', '~> 3.0', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
