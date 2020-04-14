@@ -1,7 +1,6 @@
 set :stage, :production #環境名
 set :rails_env, 'production'
 set :branch, 'master'
-set :bundle_without, %w{development test staging}.join(' ')
 
 #各サーバの役割を記述
 server '13.231.209.129', #サーバ名

@@ -57,3 +57,20 @@ set :app_server_port, 80
 set :sidekiq_processes, 4
 SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
 SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
+
+set :bundle_flags,   '--quiet' # this unsets --deployment, see details in config_bundler task details
+set :bundle_path,    nil
+set :bundle_without, nil
+
+namespace :deploy do
+  desc 'Config bundler'
+  task :config_bundler do
+    on roles(/.*/) do
+      execute :bundle, :config, '--local deployment true'
+      execute :bundle, :config, '--local without "development test"'
+      execute :bundle, :config, '--local path vendor'
+    end
+  end
+end
+
+before 'bundler:install', 'deploy:config_bundler'
