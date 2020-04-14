@@ -43,7 +43,7 @@ set :keep_releases, 3
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.7.1'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_map_bins, %w{rake gem bundle ruby rails sidekiq sidekiqctl}
 set :rbenv_roles, :all # default value
 
 # nginx
@@ -55,8 +55,8 @@ set :app_server_port, 80
 
 # sidekiq
 set :sidekiq_processes, 4
-SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
-SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
+set :init_system, :systemd
+set :service_unit_name, "sidekiq.service"
 
 set :bundle_flags,   '--quiet' # this unsets --deployment, see details in config_bundler task details
 set :bundle_path,    nil
