@@ -56,7 +56,6 @@ set :app_server_port, 80
 # sidekiq
 set :sidekiq_processes, 4
 set :init_system, :systemd
-set :service_unit_name, "sidekiq.service"
 
 set :bundle_flags,   '--quiet' # this unsets --deployment, see details in config_bundler task details
 set :bundle_path,    nil
