@@ -12,7 +12,7 @@ gem 'puma', '~> 4.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Autoload dotenv in Rails
-gem 'dotenv-rails', '~> 2.7', '>= 2.7.5', groups: [:development, :test]
+gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 # Use Redis adapter to run Action Cable in production
 gem 'hiredis', '~> 0.6.3'
 gem 'redis', '~> 4.1', '>= 4.1.3'
