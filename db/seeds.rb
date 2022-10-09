@@ -28,7 +28,7 @@ first_user = User.create(
 end
 
 second_user = User.where.not(id: first_user.id).first
-UserRelationship.create(user_one: first_user, user_two: second_user, relationship_type: :friends)
+#UserRelationship.create(user_one: first_user, user_two: second_user, relationship_type: :friends)
 room = Room.create
 room.participants.create(user: first_user)
 room.participants.create(user: second_user)
