@@ -33,7 +33,9 @@ x-backend: &backend
     FRONTEND_URL: "http://localhost:3001"
     APP_SESSION_KEY: "_rails_react_chat_session"
     REDIS_URL: redis://redis:6379/
-    DATABASE_URL: mysql2://root:password@db:3306
+    DATABASE_HOST: db
+    DATABASE_USERNAME: root
+    DATABASE_PASSWORD: password
     MALLOC_ARENA_MAX: 2
     WEB_CONCURRENCY: ${WEB_CONCURRENCY:-1}
     BOOTSNAP_CACHE_DIR: /usr/local/bundle/_bootsnap
@@ -51,11 +53,7 @@ services:
     <<: *backend
     command: /bin/bash
 
-  rails:
-    <<: *backend
-    command: bundle exec rails
-
-  web:
+  api:
     <<: *backend
     command: bundle exec rails server -b 0.0.0.0
     ports:
@@ -91,7 +89,7 @@ services:
       timeout: 10s
 
   redis:
-    image: redis:6.2.7-bullseye
+    image: redis:7.0.5-alpine
     volumes:
       - redis:/data
     ports:

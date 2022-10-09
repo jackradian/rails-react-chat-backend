@@ -1,24 +1,69 @@
-# README
+# Rails React Chat Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An API for chat app.
 
-Things you may want to cover:
+## Using
 
-* Ruby version
+- Ruby 2.7.1
+- Rails 6.0.2.1
+- MySQL 8.0
+- Redis 7.0.5
 
-* System dependencies
+## Develop
 
-* Configuration
+### Prerequisites
 
-* Database creation
+- Docker ^20.10.17
 
-* Database initialization
+### Installation
 
-* How to run the test suite
+- Clone repo
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+$ git clone git@github.com:jackradian/rails-react-chat-backend.git
+$ cd rails-react-chat-backend
+```
 
-* Deployment instructions
+- Build image
 
-* ...
+```bash
+$ docker compose build
+```
+
+- Bundle install
+
+```bash
+$ docker compose run --rm runner bundle install
+```
+
+- Init database and create seed data
+
+```bash
+$ docker compose run --rm runner bundle exec rails db:setup
+```
+
+- Enable cache (session is stored in cache)
+
+```bash
+$ docker compose run --rm runner bundle exec rails dev:cache
+```
+
+### Run server
+
+```bash
+$ docker compose up api
+```
+
+API will be hosted at `localhost:3000`.
+
+### Stop server
+
+Press <kbd>Ctrl</kbd> + <kbd>C</kbd>
+
+## Test
+
+- Run test case
+
+```bash
+$ docker compose run --rm runner bundle exec rspec
+```
