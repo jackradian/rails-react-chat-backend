@@ -19,7 +19,7 @@ gem 'redis', '~> 4.1', '>= 4.1.3'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'sidekiq', '~> 6.0', '>= 6.0.6'
+gem 'sidekiq', '~> 6.4'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
