@@ -23,7 +23,7 @@ RSpec.describe(Participant, type: :model) do
   # Enums
   #
   it do
-    should define_enum_for(:status).
-      with_values(invite_pending: 0, accepted: 1, block: 2)
+    should define_enum_for(:status)
+      .with_values(invite_pending: 0, accepted: 1, block: 2)
   end
 end
