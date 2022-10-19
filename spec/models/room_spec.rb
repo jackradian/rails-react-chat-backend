@@ -18,8 +18,8 @@ RSpec.describe(Room, type: :model) do
   # Enums
   #
   it do
-    should define_enum_for(:room_type).
-      with_values(direct_room: 0, public_room: 1, private_room: 2)
+    should define_enum_for(:room_type)
+      .with_values(direct_room: 0, public_room: 1, private_room: 2)
   end
 
   #
@@ -30,7 +30,7 @@ RSpec.describe(Room, type: :model) do
       it "return empty array" do
         user_1 = FactoryBot.create(:user)
         user_2 = FactoryBot.create(:user)
-        expect(Room.direct_room_by_id(user_1.id, user_2.id)).to eq []
+        expect(Room.direct_room_by_id(user_1.id, user_2.id)).to(eq([]))
       end
     end
     context "when they are friend" do
@@ -40,7 +40,7 @@ RSpec.describe(Room, type: :model) do
         room = FactoryBot.create(:room)
         FactoryBot.create(:participant, room: room, user: user_1)
         FactoryBot.create(:participant, room: room, user: user_2)
-        expect(Room.direct_room_by_id(user_1.id, user_2.id)).to eq [room]
+        expect(Room.direct_room_by_id(user_1.id, user_2.id)).to(eq([room]))
       end
     end
   end

@@ -26,7 +26,7 @@ RSpec.describe(Message, type: :model) do
     it "return sender nickname" do
       user = FactoryBot.build(:user)
       message = FactoryBot.build(:message, sender: user)
-      expect(message.sender_nickname).to eq user.nickname
+      expect(message.sender_nickname).to(eq(user.nickname))
     end
   end
 end

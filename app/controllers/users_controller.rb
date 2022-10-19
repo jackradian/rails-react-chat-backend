@@ -2,11 +2,13 @@
 class UsersController < ApplicationController
   skip_before_action :authorize, only: :create
 
-  def all_friends
-    @users = current_user.friends
-    render(json: @users.as_json(only: %i[id nickname]))
-  end
+  # GET /get_friends
+  # def all_friends
+  #   @users = current_user.friends
+  #   render(json: @users.as_json(only: %i[id nickname]))
+  # end
 
+  # POST /signup
   def create
     @user = User.new(user_params)
     if @user.save
@@ -19,10 +21,11 @@ class UsersController < ApplicationController
         nickname: @user.nickname
       })
     else
-      render(json: { err: 1, err_arr: @user.errors.full_messages })
+      render(status: 400, json: { err: 1, err_arr: @user.errors.full_messages })
     end
   end
 
+  # POST /add_friend
   def add_friend
     if params[:keyword].present?
       friend = User.find_by_sql(["
@@ -34,7 +37,7 @@ class UsersController < ApplicationController
         friend = friend[0]
         existed_direct_room = Room.direct_room_by_id(current_user.id, friend.id)
         unless existed_direct_room.empty?
-          render(json: { err: 1, msg: "This user has already been added" })
+          render(status: 403, json: { err: 1, msg: "This user has already been added" })
           return
         end
         room = Room.create(room_type: :direct_room)
@@ -53,10 +56,10 @@ class UsersController < ApplicationController
             }
           })
         else
-          render(json: { err: 1, msg: "System error" })
+          render(status: 400, json: { err: 1, msg: room.errors.full_messages })
         end
       else
-        render(json: { err: 1, msg: "Email or Nickname doesn't exist" })
+        render(status: 404, json: { err: 1, msg: "Email or Nickname doesn't exist" })
       end
     end
   end

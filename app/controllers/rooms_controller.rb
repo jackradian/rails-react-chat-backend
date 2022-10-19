@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class RoomsController < ApplicationController
+  # GET /my_direct_rooms
   def my_direct_rooms
     @rooms = Room.includes({ participants: :user }, :users, messages: :sender).where(
       room_type: "direct_room",
